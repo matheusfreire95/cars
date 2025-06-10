@@ -1,6 +1,6 @@
 from .models import Car
 from cars.forms import CarModelForm
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, DetailView, CreateView
 
 
 class CarsListView(ListView):
@@ -16,6 +16,11 @@ class CarsListView(ListView):
             cars = cars.filter(model__icontains=search)
         
         return cars
+
+
+class CarsDetailView(DetailView):
+    model = Car
+    template_name = 'car_detail.html'
 
 
 class CarsCreateView(CreateView):
